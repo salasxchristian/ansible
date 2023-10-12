@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: Create User
+      user:
+        name: "{{ username }}"
+        uid: "{{ uid }}"
+        comment: "{{ comment }}"
+        password: "{{ password }}"
+        update_password: on_create
+
+    - name: Force user to change password at next login
+      command: passwd --expire {{ username }}
