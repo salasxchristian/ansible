@@ -1,6 +1,8 @@
 - hosts: all
   tasks:
-    - become: true
+    - become_user: someuser
+      become_method: su
+      become_exe: sudo su -
       command: id -u
       register: id_output
 
