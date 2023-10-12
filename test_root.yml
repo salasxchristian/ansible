@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: no  # Start without escalated privileges
+  tasks:
+    - name: Check if user can escalate to root using sudo
+      command: sudo whoami
+      register: sudo_check
+      ignore_errors: true
+
+    - name: Display the result
+      debug:
+        var: sudo_check.stdout
