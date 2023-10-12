@@ -1,0 +1,8 @@
+- hosts: all
+  tasks:
+    - become: true
+      command: id -u
+      register: id_output
+
+    - assert:
+        that: id_output.stdout == '0'
