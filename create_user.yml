@@ -8,7 +8,7 @@
         name: "{{ username }}"
         uid: "{{ uid }}"
         comment: "{{ comment }}"
-        password: "{{ password }}"
+        password: "{{ password | password_hash('sha512', 'username') }}"
         update_password: on_create
 
     - name: Force user to change password at next login
